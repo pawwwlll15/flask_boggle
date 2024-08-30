@@ -1,0 +1,17 @@
+body{
+    padding: 30px;
+    background-color: #9d8a9f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+table{
+    width: 33%;
+}
+#letter{
+    border: 1px solid green;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   
+}
