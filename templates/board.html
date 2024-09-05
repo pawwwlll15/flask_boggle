@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
+
+
+
 <h1>Boggle Board</h1>
 
-<table>
+<table id="gameboard">
     {% for row in board %}
     <tr>
         {% for cell in row %}
@@ -13,9 +16,22 @@
 </table>
 
 <h2>PLEASE MAKE YOUR GUESSTIMATION:</h2>
-<form action='/submit_guess' id="guess" method="POST">
-    <label>Guess:</label><input type="text">
+<form id="guess" name="guess">
+    <label>Guess:</label><input type="text" id="guess_input" name="guess_input">
     <button>Submit Guess</button>
 </form>
-<script src="app.js"></script>
+
+<h3 id="validation_message" name="validation_message"></h3>
+<h4 id="score">0</h4>
+
+<h1 id="timer"></h1>
+
+
+
+
+
+
+<script src="/static/app.js"></script>
+<script src="/static/timer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 {% endblock %}

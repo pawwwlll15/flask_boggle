@@ -1,5 +1,5 @@
 from boggle import Boggle
-from flask import Flask, render_template, redirect, flash, session, request
+from flask import Flask, render_template, redirect, flash, session, request, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 
 
@@ -21,9 +21,24 @@ def board_page():
     #storing board in a session to prevent complications with other routes
     session['board'] = board
     return render_template('board.html', board = board)
+    
 
 @app.route('/submit_guess', methods=['POST'])
 def submit_guess():
-    guess = request.form['guess']
+    guess = request.json['guess_input']
+   
+    board = session.get('board')
+    #set class Boggle to reader variable
+    boggle = Boggle()
+    #checking if word exists in words lists
+    validate_word = boggle.check_valid_word(board,guess)
+    print(validate_word)
+    return jsonify({'result': validate_word})
+    
+    
+    """ 
+    Question for Sonia:
 
-    return f'<h1>{guess}</h1>'
+    how do I get the flash message to pup up on board.html form this view function?
+
+         """
