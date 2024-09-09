@@ -14,11 +14,14 @@ game_counter = -1
 
 @app.route('/')
 def home_page():
+    """renders home page to begin game"""
    
     return render_template('home.html')
 
 @app.route('/board')
 def board_page():
+    """host page for the game itself. populates a boggle game board and renders it in board.html """
+
     global game_counter
     game_counter += 1
     game = boggle_game
@@ -30,6 +33,7 @@ def board_page():
 
 @app.route('/submit_guess', methods=['POST'])
 def submit_guess():
+    """accepts a post submission with guess data and runs that guess through check_valid_word to determine if its valid, returns jsonified response."""
     guess = request.json['guess_input']
    
     board = session.get('board')

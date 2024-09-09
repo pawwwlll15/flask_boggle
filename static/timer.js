@@ -4,6 +4,8 @@ timer.textContent = timeCounter;
 
 
 
+
+/* timer that implements -1 every second, when timeCounter hits 0, run alert message and then send player back to home page */
 function updateTimer(){
     if(timeCounter > 0){
         timeCounter -= 1;
@@ -12,8 +14,9 @@ function updateTimer(){
         clearInterval(countdown);
         alert("TIME IS UP, PLEASE CLICK 'OK' TO HEAD BACK TO HOME PAGE!!");
         window.location.href = '/';
-        if(score > top_score){
-            top_score.textContent = score;
+        /* counter and top_score are defined in app.js */
+        if(counter > top_score){
+            top_score = counter;
         }
         
     }
