@@ -1,11 +1,13 @@
 
 /* listen for when the page loads, when the happens grab form with id 'guess' and add an event listener to that form as well */
 const guess_form = document.querySelector('#guess');
-let used_guesses = new Set()
-
+let used_guesses = new Set();
+let top_score = document.querySelector('#top_score');
 let score = document.querySelector('#score');
 let counter = 0;
 score.textContent = "Youre Score: " + counter
+
+
 
 guess_form.addEventListener('submit', async function(e){
     e.preventDefault();

@@ -10,17 +10,22 @@ app.config['SECRET_KEY'] = ['thow_shall_not_pass']
 app.config['testing'] = True
 app.config['DEBUG_TB_HOSTS'] = ['dont-show-debug-tollbar']
 
+game_counter = -1
+
 @app.route('/')
 def home_page():
+   
     return render_template('home.html')
 
 @app.route('/board')
 def board_page():
+    global game_counter
+    game_counter += 1
     game = boggle_game
     board = game.make_board()
     #storing board in a session to prevent complications with other routes
     session['board'] = board
-    return render_template('board.html', board = board)
+    return render_template('board.html', board = board, game_counter = game_counter)
     
 
 @app.route('/submit_guess', methods=['POST'])
@@ -32,7 +37,6 @@ def submit_guess():
     boggle = Boggle()
     #checking if word exists in words lists
     validate_word = boggle.check_valid_word(board,guess)
-    print(validate_word)
     return jsonify({'result': validate_word})
     
     
