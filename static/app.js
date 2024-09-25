@@ -6,7 +6,7 @@ $(document).ready(function(){
     let score = $('#score');
     let counter = 0;
     score.text("Youre Score: " + counter)
-    let top_score = 0;
+    let top_score = localStorage.getItem('top_score') || 0;
     let top_score_h4 = $('#top_score');
     top_score_h4.text(top_score);
 
@@ -31,11 +31,16 @@ $(document).ready(function(){
                 
             }
             /* if used_guesses Set does not include guess add it to set and add counter to 1 for player point */
-            else if(!used_guesses.has(guess_input)) {
+            else{
                 used_guesses.add(guess_input);
                 counter += 1;
                 score.text("Youre Score: " + counter);
-                    
+                
+                if (counter > top_score) {
+                    top_score = counter;
+                    localStorage.setItem('top_score', top_score);
+                    top_score_h4.text("Top Score: " + top_score);
+                }   
             }
         } else if(validation == 'not-on-board'){
             validation_message.text('');

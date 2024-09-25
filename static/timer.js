@@ -1,12 +1,9 @@
-   
+/* always start jquery with this function line */   
 $(document).ready(function(){
 
     let timeCounter = 60;
     let timer = $('#timer');
     timer.text(timeCounter);
-
-
-
 
     /* timer that implements -1 every second, when timeCounter hits 0, run alert message and then send player back to home page */
     function updateTimer(){
@@ -20,6 +17,8 @@ $(document).ready(function(){
             /* counter and top_score are defined in app.js */
             if(counter > top_score){
                 top_score = counter;
+                localStorage.setItem('top_score', top_score);
+                top_score_h4.text('Top Score: ' + top_score);
             }
             
         }
